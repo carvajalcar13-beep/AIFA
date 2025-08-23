@@ -32,7 +32,7 @@ export default function App() {
       />
 
       <StatusBar style="auto" />
-      {/* //<Button title='Iniciar sesión' onPress={handlelogin}/> */}
+      <Button title='Iniciar sesión' onPress={handlelogin}/>
       <Text>{JSON.stringify( tempStore, null, 2)}</Text>
 
     </View>
