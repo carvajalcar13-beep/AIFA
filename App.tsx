@@ -1,63 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useState } from 'react';
-
-
+import * as React from 'react';
+import { PaperProvider, MD3LightTheme as DefaultTheme } from 'react-native-paper';
+import Login from './src/screen/Auth/Login';
+import { COLORS } from './src/COLOR';
 
 export default function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const [tempStore, setTempStore] = useState([]);
-  
-  //const handlelogin = () => {
-    //setTempStore({ email, password });
- // }
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Iniciar Sesión</Text>
-      <TextInput
-        //
-        style ={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-      style={styles.input}
-      placeholder='Password'
-      secureTextEntry
-      value={password}
-      onChangeText={setPassword}
-      />
+    const theme = {
+        ...DefaultTheme,
+        myOwnProperty: true,
+        colors: {
+            ...DefaultTheme.colors,
+            myOwnColor: '#BADA55',
+            primary: COLORS.PRIMARY,
+        },
+    };
 
-      <StatusBar style="auto" />
-      <Button title='Iniciar sesión' onPress={handlelogin}/>
-      <Text>{JSON.stringify( tempStore, null, 2)}</Text>
-
-    </View>
-  );
+    return (
+        <PaperProvider theme={theme}>
+            <Login />
+        </PaperProvider>
+    );
 }
-      
- 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize:34,
-    marginBottom: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "gray",
-    padding: 10,
-    marginBottom: 10,
-    width: "100%",
-    borderRadius: 5,
-  }
-});
