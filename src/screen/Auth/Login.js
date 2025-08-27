@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { TextInput } from 'react-native-paper';
 
-import logo from '../../../src/img/logo_aifa.png';
+import logo from '../../../src/img/AIFA_AVION.png';
 import { STYLES } from './STYLES';
 import { COLORS } from '../../COLOR';
 
