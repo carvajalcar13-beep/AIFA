@@ -3,6 +3,9 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { TextInput } from 'react-native-paper';
+import { Checkbox } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
+
 
 import logo from '../../../src/img/AIFA_AVION.png';
 import { STYLES } from './STYLES';
@@ -13,6 +16,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [secureTextEntry, setSecureTextEntry] = useState(true);
+    const [accepted, setAccepted] = useState(false);
 
     const [tempStore, setTempStore] = useState({});
 
@@ -21,55 +25,95 @@ export default function Login() {
     }
 
     return (
-        <View style={STYLES.CONTAINER}>
-            <StatusBar style="auto" />
-            <View style={{ ...STYLES.CONTAINER, justifyContent: 'center' }}>
-                <View style={STYLES.CONTAINER_LOGO}>
-                    <Image
-                        style={STYLES.LOGO}
-                        source={logo}
-                    />
-                    <Text style={STYLES.TITLE}>Iniciar Sesión</Text>
-                </View>
-                <TextInput
-                    label="Correo electrónico"
-                    mode='outlined'
-                    style={{ marginBottom: 10 }}
-                    value={email}
-                    onChangeText={setEmail}
-                />
-                <TextInput
-                    label="Contraseña"
-                    mode='outlined'
-                    secureTextEntry={secureTextEntry}
-                    right={<TextInput.Icon icon="eye" onPress={() => setSecureTextEntry(!secureTextEntry)} />}
-                    style={{ marginBottom: 10 }}
-                    value={password}
-                    onChangeText={setPassword}
-                />
+      <View style={STYLES.CONTAINER}>
+        <StatusBar style="auto" />
+        <View style={{ ...STYLES.CONTAINER, justifyContent: "center" }}>
+          <View style={STYLES.CONTAINER_LOGO}>
+            <Image style={STYLES.LOGO} source={logo} />
+            <Text style={STYLES.TITLE}>Iniciar Sesión</Text>
+            <View style={STYLES.CHECKBOX} />
+            <Text style={STYLES.CHECKBOX_TEXT} />
+          </View>
+          <TextInput
+            label="Correo electrónico"
+            mode="outlined"
+            style={{ marginBottom: 10 }}
+            value={email}
+            onChangeText={setEmail}
+          />
+          <TextInput
+            label="Contraseña"
+            mode="outlined"
+            secureTextEntry={secureTextEntry}
+            right={
+              <TextInput.Icon
+                icon="eye"
+                onPress={() => setSecureTextEntry(!secureTextEntry)}
+              />
+            }
+            style={{ marginBottom: 10 }}
+            value={password}
+            onChangeText={setPassword}
+          />
 
-                <Button
-                    icon="login" mode="contained" onPress={() => handlelogin()}
-                    style={{ borderRadius: 5 }}
-                >
-                    Iniciar sesión
-                </Button>
+          <TextInput
+            label="Confirmar contraseña"
+            mode="outlined"
+            secureTextEntry={secureTextEntry}
+            right={
+              <TextInput.Icon
+                icon="eye"
+                onPress={() => setSecureTextEntry(!secureTextEntry)}
+              />
+            }
+            style={{ marginBottom: 10 }}
+            value={password}
+            onChangeText={setPassword}
+          />
 
-                <Text style={STYLES?.LABEL}>Iniciar sesión con...</Text>
+          <Checkbox
+            status={accepted ? "checked" : "unchecked"}
+            onPress={() => setAccepted(!accepted)}
+            uncheckedColor={COLORS.PRIMARY}
+            color={COLORS.PRIMARY}
+          />
+          <TouchableOpacity
+            onPress={() => alert("Abrir Términos y Condiciones")}
+          >
+            <Text style={STYLES.CHECKBOX_TEXT}>
+              Acepto los{" "}
+              <Text style={STYLES.LINK_TEXT}>Términos y Condiciones</Text>
+            </Text>
+          </TouchableOpacity>
 
-                <Button
-                    icon="google-plus" mode='contained-tonal' onPress={() => handlelogin()} textColor='#000000'
-                    style={{ borderRadius: 5 }}
-                >
-                    Google
-                </Button>
-            </View>
+          <Button
+            icon="login"
+            mode="contained"
+            onPress={() => handlelogin()}
+            style={{ borderRadius: 5 }}
+          >
+            Iniciar sesión
+          </Button>
 
-            <View style={{ ...STYLES.CONTAINER_LOGO, flexDirection: 'row' }}>
-                <Text style={{}}>¿Aún no tienes cuenta? </Text>
-                <Text style={{ fontWeight: 'bold', color: COLORS.PRIMARY }}>Crear una cuenta</Text>
-            </View>
+          <Text style={STYLES?.LABEL}>Iniciar sesión con...</Text>
 
+          <Button
+            icon="google-plus"
+            mode="contained-tonal"
+            onPress={() => handlelogin()}
+            textColor="#000000"
+            style={{ borderRadius: 5 }}
+          >
+            Google
+          </Button>
         </View>
+
+        <View style={{ ...STYLES.CONTAINER_LOGO, flexDirection: "row" }}>
+          <Text style={{}}>¿Aún no tienes cuenta? </Text>
+          <Text style={{ fontWeight: "bold", color: COLORS.PRIMARY }}>
+            Crear una cuenta
+          </Text>
+        </View>
+      </View>
     );
 }
