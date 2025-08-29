@@ -3,8 +3,8 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { TextInput } from 'react-native-paper';
-import { Checkbox } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native';
+import { createStaticNavigation,useNavigation,} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import logo from '../../../src/img/AIFA_AVION.png';
@@ -16,9 +16,10 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [secureTextEntry, setSecureTextEntry] = useState(true);
-    const [accepted, setAccepted] = useState(false);
+    
 
     const [tempStore, setTempStore] = useState({});
+    const navigation = useNavigation();
 
     const handlelogin = () => {
         setTempStore({ email, password });
@@ -31,8 +32,7 @@ export default function Login() {
           <View style={STYLES.CONTAINER_LOGO}>
             <Image style={STYLES.LOGO} source={logo} />
             <Text style={STYLES.TITLE}>Iniciar Sesión</Text>
-            <View style={STYLES.CHECKBOX} />
-            <Text style={STYLES.CHECKBOX_TEXT} />
+          
           </View>
           <TextInput
             label="Correo electrónico"
@@ -55,36 +55,6 @@ export default function Login() {
             value={password}
             onChangeText={setPassword}
           />
-
-          <TextInput
-            label="Confirmar contraseña"
-            mode="outlined"
-            secureTextEntry={secureTextEntry}
-            right={
-              <TextInput.Icon
-                icon="eye"
-                onPress={() => setSecureTextEntry(!secureTextEntry)}
-              />
-            }
-            style={{ marginBottom: 10 }}
-            value={password}
-            onChangeText={setPassword}
-          />
-
-          <Checkbox
-            status={accepted ? "checked" : "unchecked"}
-            onPress={() => setAccepted(!accepted)}
-            uncheckedColor={COLORS.PRIMARY}
-            color={COLORS.PRIMARY}
-          />
-          <TouchableOpacity
-            onPress={() => alert("Abrir Términos y Condiciones")}
-          >
-            <Text style={STYLES.CHECKBOX_TEXT}>
-              Acepto los{" "}
-              <Text style={STYLES.LINK_TEXT}>Términos y Condiciones</Text>
-            </Text>
-          </TouchableOpacity>
 
           <Button
             icon="login"
@@ -110,7 +80,7 @@ export default function Login() {
 
         <View style={{ ...STYLES.CONTAINER_LOGO, flexDirection: "row" }}>
           <Text style={{}}>¿Aún no tienes cuenta? </Text>
-          <Text style={{ fontWeight: "bold", color: COLORS.PRIMARY }}>
+          <Text onPress={() => navigation.navigate("Registro")} style={{ fontWeight: "bold", color: COLORS.PRIMARY }}>
             Crear una cuenta
           </Text>
         </View>
