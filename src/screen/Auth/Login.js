@@ -5,6 +5,8 @@ import { Button } from 'react-native-paper';
 import { TextInput } from 'react-native-paper';
 import { createStaticNavigation,useNavigation,} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Checkbox } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
 
 
 import logo from '../../../src/img/AIFA_AVION.png';
@@ -16,6 +18,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [secureTextEntry, setSecureTextEntry] = useState(true);
+    const [accepted, setAccepted] = useState(false);
     
 
     const [tempStore, setTempStore] = useState({});
@@ -64,6 +67,36 @@ export default function Login() {
           >
             Iniciar sesión
           </Button>
+
+          <Checkbox
+            status={accepted ? "checked" : "unchecked"}
+            onPress={() => setAccepted(!accepted)}
+            uncheckedColor={COLORS.PRIMARY}
+            color={COLORS.PRIMARY}
+          />
+          <TouchableOpacity
+            onPress={() => alert("Abrir Términos y Condiciones")}
+          >
+            <Text style={STYLES.CHECKBOX_TEXT}>
+              Acepto los{" "}
+              <Text style={STYLES.LINK_TEXT}>Términos de Servicio</Text>
+            </Text>
+          </TouchableOpacity>
+
+           <Checkbox
+            status={accepted ? "checked" : "unchecked"}
+            onPress={() => setAccepted(!accepted)}
+            uncheckedColor={COLORS.PRIMARY}
+            color={COLORS.PRIMARY}
+          />
+          <TouchableOpacity
+            onPress={() => alert("Abrir Términos y Condiciones")}
+          >
+            <Text style={STYLES.CHECKBOX_TEXT}>
+              Acepto los{" "}
+              <Text style={STYLES.LINK_TEXT}>Aviso de Privacidad</Text>
+            </Text>
+          </TouchableOpacity>
 
           <Text style={STYLES?.LABEL}>Iniciar sesión con...</Text>
 

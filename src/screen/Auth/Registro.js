@@ -68,7 +68,7 @@ export default function Registro() {
             value={password}
             onChangeText={setPassword}
           />
-          <Checkbox
+           <Checkbox
             status={accepted ? "checked" : "unchecked"}
             onPress={() => setAccepted(!accepted)}
             uncheckedColor={COLORS.PRIMARY}
@@ -79,7 +79,22 @@ export default function Registro() {
           >
             <Text style={STYLES.CHECKBOX_TEXT}>
               Acepto los{" "}
-              <Text style={STYLES.LINK_TEXT}>Términos y Condiciones</Text>
+              <Text style={STYLES.LINK_TEXT}>Términos de Servicio</Text>
+            </Text>
+          </TouchableOpacity>
+
+           <Checkbox
+            status={accepted ? "checked" : "unchecked"}
+            onPress={() => setAccepted(!accepted)}
+            uncheckedColor={COLORS.PRIMARY}
+            color={COLORS.PRIMARY}
+          />
+          <TouchableOpacity
+            onPress={() => alert("Abrir Términos y Condiciones")}
+          >
+            <Text style={STYLES.CHECKBOX_TEXT}>
+              Acepto los{" "}
+              <Text style={STYLES.LINK_TEXT}>Aviso de Privacidad</Text>
             </Text>
           </TouchableOpacity>
 

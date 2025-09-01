@@ -48,14 +48,14 @@ export const STYLES = StyleSheet.create({
   CHECKBOX: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 15,
+    marginBottom: 10,
   },
   CHECKBOX_TEXT: {
-    fontSize: 10,
+    fontSize: 13,
   },
   LINK_TEXT: {
     fontWeight: "bold",
     color: COLORS.PRIMARY,
-    fontSize: 10,
+    fontSize: 13,
   },
 });
